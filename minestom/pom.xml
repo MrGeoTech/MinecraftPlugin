@@ -43,8 +43,6 @@
             <groupId>net.craftingstore</groupId>
             <artifactId>core</artifactId>
             <version>${project.version}</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/core-2.8.0-RELEASE.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>net.kyori</groupId>
