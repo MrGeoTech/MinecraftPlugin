@@ -8,17 +8,17 @@ import java.util.UUID;
 public class DonationReceivedEvent implements CancellableEvent {
 
     @Deprecated
-    private String command;
+    private final String command;
     @Deprecated
-    private String username;
+    private final String username;
     @Deprecated
-    private UUID uuid;
+    private final UUID uuid;
     @Deprecated
-    private String packageName;
+    private final String packageName;
     @Deprecated
-    private int packagePrice;
+    private final int packagePrice;
     @Deprecated
-    private int couponDiscount;
+    private final int couponDiscount;
 
     private Donation donation;
 
@@ -78,10 +78,12 @@ public class DonationReceivedEvent implements CancellableEvent {
         return couponDiscount;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancelled;
     }
 
+    @Override
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
     }

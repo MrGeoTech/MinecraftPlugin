@@ -3,6 +3,7 @@ package net.craftingstore.minestom.config;
 import net.minestom.server.extensions.Extension;
 
 import java.io.*;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.util.Properties;
 
@@ -17,10 +18,8 @@ public class Config {
             this.file = file;
             this.extension = extension;
 
-            file.getParentFile().mkdirs();
-
-            if (!file.exists()) {
-                InputStream is = extension.getResource(file.toPath());
+            if (file.getParentFile().mkdirs() || file.createNewFile()) {
+                InputStream is = getClass().getClassLoader().getResourceAsStream(file.getName());
                 extension.getLogger().info("Copying default config file.");
                 try {
                     assert is != null;
@@ -30,6 +29,7 @@ public class Config {
                 }
             }
         } catch (Exception e) {
+            if (e instanceof FileAlreadyExistsException) return;
             e.printStackTrace();
             extension.terminate();
         }
