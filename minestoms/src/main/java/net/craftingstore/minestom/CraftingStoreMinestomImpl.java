@@ -10,20 +10,18 @@ import net.minestom.server.MinecraftServer;
 import net.minestom.server.entity.Player;
 import net.minestom.server.timer.ExecutionType;
 import net.minestom.server.timer.TaskSchedule;
-
-import java.util.logging.Logger;
+import org.slf4j.Logger;
 
 public class CraftingStoreMinestomImpl implements CraftingStorePlugin {
 
     private final CraftingStoreExtension minestomExtension;
-    private final JavaLogger logger;
+    private final Logger logger;
     private final MinestomExtensionConfiguration configuration;
 
     CraftingStoreMinestomImpl(CraftingStoreExtension minestomExtension) {
         this.minestomExtension = minestomExtension;
         this.configuration = new MinestomExtensionConfiguration(minestomExtension);
-        this.logger = new JavaLogger(Logger.getLogger(minestomExtension.getLogger().getName()));
-        this.logger.setDebugging(minestomExtension.getConfig().getDebug());
+        this.logger = minestomExtension.getLogger();
     }
 
     @Override
@@ -49,7 +47,7 @@ public class CraftingStoreMinestomImpl implements CraftingStorePlugin {
 
     @Override
     public CraftingStoreLogger getLogger() {
-        return this.logger;
+        return new JavaLogger(java.util.logging.Logger.getLogger(this.logger.getName()));
     }
 
     @Override

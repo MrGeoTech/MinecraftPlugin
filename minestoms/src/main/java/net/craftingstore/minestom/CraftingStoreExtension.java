@@ -23,7 +23,7 @@ public class CraftingStoreExtension extends Extension {
 
     @Override
     public void initialize() {
-        config = new Config(this, new File(this.getDataDirectory().toFile(), "/config.properties"));
+        config = new Config(this, new File(this.getDataDirectory().toFile(), "/src/src/main/resources/config.properties"));
         this.craftingStore = new CraftingStore(new CraftingStoreMinestomImpl(this));
         MinecraftServer.getCommandManager()
                 .register(new CraftingStoreCommand(this));

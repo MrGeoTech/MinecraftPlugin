@@ -28,7 +28,7 @@ public class Utils {
                 .replaceAll("&n", "<reset><underlined>")
                 .replaceAll("&o", "<reset><em>")
                 .replaceAll("&r", "<reset>");
-        return MiniMessage.get().parse(text).asComponent();
+        return Component.text(text);
     }
 
 }
